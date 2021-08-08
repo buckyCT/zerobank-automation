@@ -1,5 +1,9 @@
 Feature: Testing Account Summary tab
 
+  Scenario: Account Summary title
+    Given the user is logged in
+    Then Page title should be "Zero - Account Summary"
+
   Scenario: Account types
     Given the user is logged in
     Then Account summary page should have to following account types

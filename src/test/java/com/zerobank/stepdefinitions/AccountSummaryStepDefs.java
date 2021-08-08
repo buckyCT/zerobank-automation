@@ -2,6 +2,7 @@ package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.AccountSummaryPage;
 import com.zerobank.utilities.BrowserUtils;
+import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,12 @@ public class AccountSummaryStepDefs {
     public void credit_Accounts_table_must_have_columns(List<String> expectedList){
         List<String> actualList = BrowserUtils.getElementsText(new AccountSummaryPage().getTableHeadColumns(3));
         Assert.assertEquals(expectedList,actualList);
+    }
+
+    @Then("Page title should be {string}")
+    public void page_title_should_be(String expectedTitle) {
+        String actualTitle = Driver.get().getTitle();
+        Assert.assertEquals(expectedTitle,actualTitle);
     }
 
 }
