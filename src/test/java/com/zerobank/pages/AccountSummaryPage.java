@@ -13,8 +13,8 @@ public class AccountSummaryPage extends BasePage{
     @FindBy(xpath = "(//a[text()='Savings'])[1]")
     public WebElement savings1;
 
-    @FindBy(xpath = "(//a[text()='Savings'])[2]")
-    public WebElement savings2;
+//    @FindBy(xpath = "(//a[text()='Savings'])[2]")
+//    public WebElement savings2;
 
     @FindBy(linkText = "Loan")
     public WebElement loan;
