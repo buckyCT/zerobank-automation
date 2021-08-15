@@ -2,10 +2,7 @@ package com.zerobank.stepdefinitions;
 
 import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.utilities.BrowserUtils;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
+import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 
@@ -35,6 +32,7 @@ public class FindTransactionStepDefs {
 
     @And("clicks search")
     public void clicksSearch() {
+        BrowserUtils.waitFor(1);
         accountActivityPage.findButton.click();
     }
 
@@ -108,6 +106,9 @@ public class FindTransactionStepDefs {
         for (WebElement w : filteredTransactionDescriptions){
             actualList.add(w.getText());
         }
+        if(actualList.size()==0){
+            actualList.add("empty"); //we do this because when list is empty, compiler passes assertion loop
+        }                            //as I understood, because test always passes never fails when empty
         for(String s : actualList){
             Assert.assertTrue(s.contains(string));
         }
@@ -121,9 +122,76 @@ public class FindTransactionStepDefs {
         for (WebElement w : filteredTransactionDescriptions){
             actualList.add(w.getText());
         }
+        if(actualList.size()==0){
+            actualList.add("empty"); //we do this because when list is empty, compiler passes assertion loop
+        }                            //as I understood, because test always passes never fails when empty
         for(String s : actualList){
             Assert.assertFalse(s.contains(string));
         }
     }
+
+    @Then("results table should show at least one result under {string}")
+    public void resultsTableShouldShowAtLeastOneResultUnderDeposit(String columnName) {
+        BrowserUtils.waitFor(1);
+
+        switch (columnName){
+
+            case "Deposit":
+                List<String> deposits = new ArrayList<>();
+                for (WebElement w : (new AccountActivityPage().filteredTransactionDeposits)) {
+                    if(w.getText().length()>0){
+                        deposits.add(w.getText());
+                    }
+                }
+                Assert.assertTrue(deposits.size()>0);
+                break;
+
+            case "Withdrawal":
+                List<String> withdrawals = new ArrayList<>();
+                for (WebElement w : (new AccountActivityPage().filteredTransactionWithdrawal)) {
+                    if(w.getText().length()>0){
+                        withdrawals.add(w.getText());
+                    }
+                }
+                Assert.assertTrue(withdrawals.size()>0);
+                break;
+        }
+    }
+
+    @But("results table should show no result under {string}")
+    public void resultsTableShouldShowNoResultUnder(String columnName) {
+        BrowserUtils.waitFor(1);
+
+        switch (columnName){
+
+            case "Deposit":
+                List<String> deposits = new ArrayList<>();
+                for (WebElement w : (new AccountActivityPage().filteredTransactionDeposits)) {
+                    if(w.getText().length()>0){
+                        deposits.add(w.getText());
+                    }
+                }
+                Assert.assertEquals(0, deposits.size());
+                break;
+
+            case "Withdrawal":
+                List<String> withdrawals = new ArrayList<>();
+                for (WebElement w : (new AccountActivityPage().filteredTransactionWithdrawal)) {
+                    if(w.getText().length()>0){
+                        withdrawals.add(w.getText());
+                    }
+                }
+                Assert.assertEquals(0, withdrawals.size());
+                break;
+        }
+    }
+
+    @When("user selects type {string}")
+    public void userSelectsType(String option) {
+        BrowserUtils.waitFor(1);
+        new AccountActivityPage().typeDropdown().selectByVisibleText(option);
+        clicksSearch();
+    }
+
 
 }

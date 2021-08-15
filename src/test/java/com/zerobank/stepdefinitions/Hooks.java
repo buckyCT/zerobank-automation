@@ -5,7 +5,6 @@ import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.junit.Ignore;
 
 public class Hooks {
 

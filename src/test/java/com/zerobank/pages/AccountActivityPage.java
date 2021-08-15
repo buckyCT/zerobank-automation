@@ -13,8 +13,7 @@ public class AccountActivityPage extends BasePage{
     private WebElement accountDropdownNeedToBeInSelect;
 
     public Select accountDropdown(){
-        Select select = new Select(accountDropdownNeedToBeInSelect);
-        return select;
+        return new Select(accountDropdownNeedToBeInSelect);
     }
 
     @FindBy(xpath = "//table/thead//th")
@@ -40,5 +39,18 @@ public class AccountActivityPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tr/td[2]")
     public List<WebElement> filteredTransactionDescriptions;
+
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tr/td[3]")
+    public List<WebElement> filteredTransactionDeposits;
+
+    @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//tr/td[4]")
+    public List<WebElement> filteredTransactionWithdrawal;
+
+    @FindBy(id = "aa_type")
+    private WebElement typeDropdownNeedToBeInSelect;
+
+    public Select typeDropdown(){
+        return new Select(typeDropdownNeedToBeInSelect);
+    }
 
 }
