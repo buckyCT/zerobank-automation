@@ -49,4 +49,10 @@ public class PayBillsPage extends BasePage{
         return new Select(currencyDropdownNeedToBeInSelect);
     }
 
+    @FindBy(id = "pc_calculate_costs")
+    public WebElement calculateCost;
+
+    @FindBy(id = "pc_amount")
+    public WebElement amountInputForeignCurrency;
+
 }
