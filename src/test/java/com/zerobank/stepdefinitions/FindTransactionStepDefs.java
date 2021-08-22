@@ -102,10 +102,10 @@ public class FindTransactionStepDefs {
     public void results_table_should_only_show_descriptions_containing(String string) {
         BrowserUtils.waitFor(1);
         List<WebElement> filteredTransactionDescriptions = new AccountActivityPage().filteredTransactionDescriptions;
-        List<String> actualList = new ArrayList<>();
-        for (WebElement w : filteredTransactionDescriptions){
-            actualList.add(w.getText());
-        }
+        List<String> actualList = BrowserUtils.getElementsText(filteredTransactionDescriptions);
+//        for (WebElement w : filteredTransactionDescriptions){
+//            actualList.add(w.getText());
+//        }
         if(actualList.size()==0){
             actualList.add("empty"); //we do this because when list is empty, compiler passes assertion loop
         }                            //as I understood, because test always passes never fails when empty
@@ -118,10 +118,10 @@ public class FindTransactionStepDefs {
     public void results_table_should_not_show_descriptions_containing(String string) {
         BrowserUtils.waitFor(1);
         List<WebElement> filteredTransactionDescriptions = new AccountActivityPage().filteredTransactionDescriptions;
-        List<String> actualList = new ArrayList<>();
-        for (WebElement w : filteredTransactionDescriptions){
-            actualList.add(w.getText());
-        }
+        List<String> actualList = BrowserUtils.getElementsText(filteredTransactionDescriptions);
+//        for (WebElement w : filteredTransactionDescriptions){
+//            actualList.add(w.getText());
+//        }
         if(actualList.size()==0){
             actualList.add("empty"); //we do this because when list is empty, compiler passes assertion loop
         }                            //as I understood, because test always passes never fails when empty

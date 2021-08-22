@@ -22,12 +22,23 @@ public class AccountActivityNavigationStepsDef {
     public void theUserClicksOnLinkOnTheAccountSummaryPage(String link) {
         AccountSummaryPage accountSummaryPage = new AccountSummaryPage();
         switch (link) {
-            case "Savings" -> accountSummaryPage.savings1.click();
-            case "Brokerage" -> accountSummaryPage.brokerage.click();
-            case "Checking" -> accountSummaryPage.checking.click();
-            case "Credit Card" -> accountSummaryPage.creditCard.click();
-            case "Loan" -> accountSummaryPage.loan.click();
-            default -> throw new NoSuchElementException();
+            case "Savings" :
+                accountSummaryPage.savings1.click();
+                break;
+            case "Brokerage" :
+                accountSummaryPage.brokerage.click();
+                break;
+            case "Checking" :
+                accountSummaryPage.checking.click();
+                break;
+            case "Credit Card" :
+                accountSummaryPage.creditCard.click();
+                break;
+            case "Loan" :
+                accountSummaryPage.loan.click();
+                break;
+            default :
+                throw new NoSuchElementException();
         }
     }
 }
